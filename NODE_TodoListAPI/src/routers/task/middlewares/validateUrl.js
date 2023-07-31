@@ -1,4 +1,6 @@
-const validateHandler = (req, res, next) => {
+const { isValidBoolean, isValidNumber, isValidDate } = require('./validateFunc');
+
+const validateUrlHandler = (req, res, next) => {
     const { id, since, until, deadline, completed } = req.query;
     const errors = [];
 
@@ -31,15 +33,5 @@ const validateHandler = (req, res, next) => {
     console.log('Parameters validation passed\n');
     next();
 };
-function isValidBoolean(value) {
-    return value === 'true' || value === 'false' || value === '0' || value === '1';
-}
-function isValidNumber(value) {
-    return !isNaN(value) && Number.isInteger(Number(value));
-}
-function isValidDate(value) {
-    const date = new Date(value);
-    return date instanceof Date && !isNaN(date.getTime());
-}
 
-module.exports = validateHandler;
+module.exports = validateUrlHandler;

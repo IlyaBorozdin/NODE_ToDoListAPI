@@ -11,6 +11,14 @@ const connection = mysql.createConnection({
     database: 'db_todo_list_api'
 }).promise();
 
+connection.connect()
+    .then(() => {
+        console.log('Database is connected\n');
+    })
+    .catch(err => {
+        console.error('Database is disconnected\n', err);
+        throw new DBError('Database is disconnected', 'CONNECT', 500);
+    });
 class MySql {
     constructor(connection) {
         this._connection = connection;
@@ -25,7 +33,7 @@ class MySql {
     }
 
     create(task) {
-        const { text, values } = SelectorToSqlQuery.insert(task.objectProperties);
+        const { text, values } = SelectorToSqlQuery.insert(task);
 
         return this._connection.query(text, values)
             .then(([res]) => {

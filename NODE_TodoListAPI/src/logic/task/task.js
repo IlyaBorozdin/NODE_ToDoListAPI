@@ -1,8 +1,8 @@
 class Task {
-    constructor(title, deadline, completed = false) {
+    constructor(title, deadline, completed) {
         this._title = title;
         this._deadline = deadline;
-        this._completed = completed;
+        this._completed = !!completed;
     }
     get title() {
         return this._title;

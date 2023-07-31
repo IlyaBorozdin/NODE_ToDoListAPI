@@ -1,4 +1,4 @@
-const storage = require('../../db/usedStorage');
+const storage = require('../../../db/usedStorage');
 
 const getHandler = (req, res) => {
     console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
@@ -21,7 +21,7 @@ const getHandler = (req, res) => {
             return res.status(200).json(tasks.map(task => task.objectProperties));
         })
         .catch(err => {
-            console.error('Error while processing GET request:', err);
+            console.error('Error while processing GET request:\n', err);
             throw err;
         });
 };

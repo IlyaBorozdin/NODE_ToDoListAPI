@@ -28,6 +28,12 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="CLI\api.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="CLI\interface.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -61,16 +67,28 @@
     <Content Include="src\logic\task\taskId.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\error.js">
+    <Content Include="src\routers\task\middlewares\error.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\get.js">
+    <Content Include="src\routers\task\requests\get.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\middlewares\validateFunc.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\requests\post.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\requests\put.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\taskRouter.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\validate.js">
+    <Content Include="src\routers\task\middlewares\validateBody.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\middlewares\validateUrl.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\shutdown.js">
@@ -78,6 +96,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CLI\" />
     <Folder Include="src\" />
     <Folder Include="src\logic\" />
     <Folder Include="src\db\" />
@@ -88,6 +107,8 @@
     <Folder Include="src\routers\localhost\" />
     <Folder Include="src\routers\task\" />
     <Folder Include="src\routers\task\id\" />
+    <Folder Include="src\routers\task\middlewares\" />
+    <Folder Include="src\routers\task\requests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
