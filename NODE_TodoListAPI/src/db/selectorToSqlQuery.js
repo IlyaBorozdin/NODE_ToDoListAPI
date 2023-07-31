@@ -1,3 +1,4 @@
+const DBError = require('../logic/serverError/DBError');
 class SelectorToSqlQuery {
 
     static select(selector) {
@@ -18,6 +19,10 @@ class SelectorToSqlQuery {
     }
 
     static insert(selector) {
+        if (selector.title.length > 255) {
+            throw new DBError('Title length must not exceed 255 characters', 'CREATE', 400);
+        }
+
         const queryParams = [];
         const columns = [];
 
@@ -33,7 +38,7 @@ class SelectorToSqlQuery {
         });
 
         if (columns.length === 0) {
-            throw new Error('No valid fields provided for INSERT INTO query.');
+            throw new DBError('No valid fields provided for query', 'CREATE', 400);
         }
 
         const query = `INSERT INTO todo_list (${columns.join(', ')})\nVALUES (${Array(columns.length).fill('?').join(', ') });`;
@@ -42,6 +47,10 @@ class SelectorToSqlQuery {
     }
 
     static update(selector) {
+        if (selector.title && selector.title.length > 255) {
+            throw new DBError('Title length must not exceed 255 characters', 'UPDATE', 400);
+        }
+
         const fields = Object.keys(selector);
         const queryParams = [];
         const updateFields = [];
@@ -60,7 +69,7 @@ class SelectorToSqlQuery {
         });
 
         if (updateFields.length === 0) {
-            throw new Error('No valid fields provided for UPDATE query.');
+            throw new DBError('No valid fields provided for query', 'UPDATE', 400);
         }
 
         const query = `UPDATE todo_list\nSET ${updateFields.join(', ')};`;
@@ -93,6 +102,9 @@ class SelectorToSqlQuery {
             switch (field) {
                 case 'id':
                     condition = 'id = ?';
+                    break;
+                case 'title':
+                    condition = 'title = ?';
                     break;
                 case 'titleReg':
                     condition = 'LOWER(title) LIKE LOWER(?)';

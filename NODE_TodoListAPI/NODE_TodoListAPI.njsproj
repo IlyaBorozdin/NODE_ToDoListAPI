@@ -37,13 +37,43 @@
     <Content Include="src\db\selectorToSqlQuery.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\db\sqlStorage.js">
+    <Content Include="src\db\storage.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\task.js">
+    <Content Include="src\db\usedStorage.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\taskId.js">
+    <Content Include="src\logic\serverError\clientError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\serverError\DBError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\serverError\notFoundError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\serverError\serverError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\task\task.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\task\taskId.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\error.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\get.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\taskRouter.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\validate.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\shutdown.js">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
@@ -51,6 +81,13 @@
     <Folder Include="src\" />
     <Folder Include="src\logic\" />
     <Folder Include="src\db\" />
+    <Folder Include="src\logic\serverError\" />
+    <Folder Include="src\logic\task\" />
+    <Folder Include="src\middlewares\" />
+    <Folder Include="src\routers\" />
+    <Folder Include="src\routers\localhost\" />
+    <Folder Include="src\routers\task\" />
+    <Folder Include="src\routers\task\id\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

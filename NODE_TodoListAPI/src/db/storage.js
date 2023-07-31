@@ -1,4 +1,4 @@
-class SqlStorage {
+class Storage {
     constructor(storage) {
         this._storage = storage;
     }
@@ -25,8 +25,8 @@ class SqlStorage {
         return this._storage.read(selector, conditions);
     }
 
-    update(selector, conditions) {
-        return this._storage.update(selector, conditions);
+    update(task, conditions) {
+        return this._storage.update(task, conditions);
     }
 
     delete(conditions) {
@@ -34,4 +34,4 @@ class SqlStorage {
     }
 }
 
-module.exports = SqlStorage;
+module.exports = Storage;

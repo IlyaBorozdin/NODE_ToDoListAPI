@@ -1,6 +1,8 @@
 const mysql = require('mysql2');
-const TaskId = require('../logic/taskId');
+
+const TaskId = require('../logic/task/taskId');
 const SelectorToSqlQuery = require('./selectorToSqlQuery');
+const DBError = require('../logic/serverError/DBError');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -23,21 +25,17 @@ class MySql {
     }
 
     create(task) {
-        if (task.title.length > 255) {
-            throw new Error('Title length must not exceed 255 characters');
-        }
-
         const { text, values } = SelectorToSqlQuery.insert(task.objectProperties);
 
         return this._connection.query(text, values)
             .then(([res]) => {
                 let id = res.insertId;
-                console.log(`Inserted task: id = ${id}`);
+                console.log(`Inserted task: id = ${id}\n`);
                 return id;
             })
             .catch(err => {
-                console.error('Error inserting new task', err);
-                throw err;
+                console.error('Error inserting new task\n', err);
+                throw new DBError('Error inserting new task', 'CREATE', 500);
             });
     }
 
@@ -49,7 +47,7 @@ class MySql {
 
         return this._connection.query(text, values)
             .then(([tasks]) => {
-                console.log(`Selected tasks: ${tasks}`);
+                console.log(`Selected tasks: ${JSON.stringify(tasks, null, 2)}\n`);
 
                 return tasks.map(taskData => {
                     const { id, title, deadline, completed } = taskData;
@@ -57,24 +55,25 @@ class MySql {
                 });
             })
             .catch(err => {
-                console.error('Error searching tasks', err);
-                throw err;
+                console.error('Error searching tasks\n', err);
+                throw new DBError('Error searching task', 'READ', 500);
             });
     }
 
-    update(selector, conditions) {
+    update(task, conditions) {
         const { text, values } = SelectorToSqlQuery.concat(
-            SelectorToSqlQuery.update(selector),
+            SelectorToSqlQuery.update(task),
             SelectorToSqlQuery.where(conditions)
         );
 
         return this._connection.query(text, values)
             .then(([res]) => {
+                console.log(`Affected rows: ${res.affectedRows}\n`);
                 return res.affectedRows;
             })
             .catch(err => {
-                console.error('Error updating tasks', err);
-                throw err;
+                console.error('Error updating tasks\n', err);
+                throw new DBError('Error updating tasks', 'UPDATE', 500);
             });
     }
 
@@ -86,11 +85,12 @@ class MySql {
 
         return this._connection.query(text, values)
             .then(([res]) => {
+                console.log(`Affected rows: ${res.affectedRows}\n`);
                 return res.affectedRows;
             })
             .catch(err => {
-                console.error('Error removing tasks', err);
-                throw err;
+                console.error('Error removing tasks\n', err);
+                throw new DBError('Error removing tasks', 'DELETE', 500);
             });
     }
 }
