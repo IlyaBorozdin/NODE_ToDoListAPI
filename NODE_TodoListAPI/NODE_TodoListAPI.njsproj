@@ -28,10 +28,25 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="CLI\api.js">
+    <Content Include="cli\api.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="CLI\interface.js">
+    <Content Include="cli\ask.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="cli\cmd.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="cli\log.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="cli\main.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="cli_test\api.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="cli_test\interface.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="server.js" />
@@ -49,16 +64,13 @@
     <Content Include="src\db\usedStorage.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\serverError\clientError.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="src\logic\serverError\DBError.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\serverError\notFoundError.js">
+    <Content Include="src\logic\serverError\serverError.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\serverError\serverError.js">
+    <Content Include="src\logic\serverError\validationError.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\logic\task\selector.js">
@@ -77,9 +89,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\id\requests\get.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\routers\task\id\requests\post.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\id\requests\put.js">
@@ -126,7 +135,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CLI\" />
+    <Folder Include="cli_test\" />
+    <Folder Include="cli\" />
     <Folder Include="src\" />
     <Folder Include="src\logic\" />
     <Folder Include="src\db\" />
@@ -135,6 +145,7 @@
     <Folder Include="src\middlewares\" />
     <Folder Include="src\routers\" />
     <Folder Include="src\routers\localhost\" />
+    <Folder Include="src\routers\localhost\middlewares\" />
     <Folder Include="src\routers\task\" />
     <Folder Include="src\routers\task\id\" />
     <Folder Include="src\routers\task\id\middlewares\" />

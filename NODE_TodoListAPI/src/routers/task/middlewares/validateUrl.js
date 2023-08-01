@@ -1,37 +1,41 @@
 const UrlValidation = require('./validation/urlValidation');
+const ValidationError = require('../../../logic/serverError/validationError');
 
 const validateUrlHandler = (req, res, next) => {
     const { id, since, until, deadline, completed } = req.query;
-    const errors = [];
+
+    console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
+
+    const remarks = new ValidationError();
+    req.validationError = remarks;
 
     if (!UrlValidation.isNum(id)) {
-        errors.push('ID must be a valid integer');
+        remarks.push('Query: Id must be a valid integer');
     }
 
     if (!UrlValidation.isDate(since)) {
-        errors.push('Since must be a valid date');
+        remarks.push('Query: Since must be a valid date');
     }
 
     if (!UrlValidation.isDate(until)) {
-        errors.push('Until must be a valid date');
+        remarks.push('Query: Until must be a valid date');
     }
 
     if (!UrlValidation.isDate(deadline)) {
-        errors.push('Deadline must be a valid date');
+        remarks.push('Query: Deadline must be a valid date');
     }
 
     if (!UrlValidation.isBool(completed)) {
-        errors.push('Completed must be a valid boolean');
+        remarks.push('Query: Completed must be a valid boolean');
     }
 
-    if (errors.length > 0) {
-        const message = errors.join('. ');
-        console.log(`Parameters validation in /task failed: ${message}\n`);
-        return res.status(400).json({ error: message });
+    if (remarks.length > 0) {
+        console.log('Parameters validation in /task failed\n');
+    } else {
+        console.log('Parameters validation in /task passed\n');
     }
 
-    console.log('Parameters validation in /task passed\n');
-    next();
+    return next();
 };
 
 module.exports = validateUrlHandler;

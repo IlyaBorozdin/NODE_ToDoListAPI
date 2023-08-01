@@ -1,7 +1,7 @@
 class Validation {
 
     static isDate(value) {
-        if (value === undefined) {
+        if (value === undefined || value === 'null') {
             return true;
         }
 

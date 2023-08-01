@@ -8,7 +8,7 @@ const postHandler = (req, res) => {
 
     storage.connect()
         .then(() => {
-            return storage.create(task.objectProperties);
+            return storage.create(task.objProps);
         })
         .then(id => {
             console.log('POST request: OK\n');

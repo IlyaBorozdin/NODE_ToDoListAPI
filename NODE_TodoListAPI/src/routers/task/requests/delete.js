@@ -10,9 +10,9 @@ const deleteHandler = (req, res) => {
         .then(() => {
             return storage.delete(conditions.objProps)
         })
-        .then(affectedRows => {
+        .then(() => {
             console.log('DELETE request: OK\n');
-            return res.status(200).json({ affectedRows: affectedRows });
+            return res.status(204).end();
         })
         .catch(err => {
             console.error('Error while processing DELETE request:\n', err);

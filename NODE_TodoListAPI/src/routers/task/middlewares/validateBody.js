@@ -1,29 +1,34 @@
 const BodyValidation = require('./validation/bodyValidation');
 
 const validateBodyHandler = (req, res, next) => {
-    if (!Object.keys(req.body).length) {
+    const remarks = req.validationError;
+
+    if (Object.keys(req.body).length === 0) {
+        if (remarks.length > 0) {
+            throw remarks;
+        }
         return next();
     }
 
+    console.log(`Request parametrs: ${JSON.stringify(req.body, null, 2)}\n`);
+
     const { deadline, completed } = req.body;
-    const errors = [];
 
     if (!BodyValidation.isDate(deadline)) {
-        errors.push('Deadline must be a valid date');
+        remarks.push('Body: Deadline must be a valid date');
     }
 
     if (!BodyValidation.isBool(completed)) {
-        errors.push('Completed must be a valid boolean');
+        remarks.push('Body: Completed must be a valid boolean');
     }
 
-    if (errors.length > 0) {
-        const message = errors.join('. ');
-        console.log(`Body validation in /task failed: ${message}\n`);
-        return res.status(400).json({ error: message });
+    if (remarks.length > 0) {
+        console.log('Body validation in /task failed\n');
+        throw remarks;
     }
 
     console.log('Body validation in /task passed\n');
-    next();
+    return next();
 };
 
 module.exports = validateBodyHandler;

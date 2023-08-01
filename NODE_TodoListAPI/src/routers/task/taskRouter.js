@@ -1,12 +1,12 @@
 const express = require('express');
 const taskRouter = express.Router();
 
+const idRouter = require('./id/idRouter');
+
 const getHandler = require('./requests/get');
 const postHandler = require('./requests/post');
 const putHandler = require('./requests/put');
 const deleteHandler = require('./requests/delete');
-
-const idRouter = require('./id/idRouter');
 
 const validateUrlHandler = require('./middlewares/validateUrl');
 const validateBodyHandler = require('./middlewares/validateBody');

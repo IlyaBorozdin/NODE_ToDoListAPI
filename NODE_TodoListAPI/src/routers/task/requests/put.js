@@ -15,9 +15,9 @@ const putHandler = (req, res) => {
         .then(() => {
             return storage.update(task.objProps, conditions.objProps);
         })
-        .then(affectedRows => {
+        .then(() => {
             console.log('PUT request: OK\n');
-            return res.status(200).json({ affectedRows: affectedRows });
+            return res.status(204).end();
         })
         .catch(err => {
             console.error('Error while processing PUT request:\n', err);

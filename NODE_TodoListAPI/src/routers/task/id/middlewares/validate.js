@@ -17,7 +17,7 @@ const validateHandler = (req, res, next) => {
             }
             req.task = task.objProps;
             console.log(`Validation in /task/:id passed\n`);
-            next();
+            return next();
         })
         .catch(err => {
             console.error('Error while validation in /task/:id:\n', err);

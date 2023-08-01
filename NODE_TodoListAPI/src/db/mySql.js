@@ -73,7 +73,7 @@ class MySql {
         return this._connection.query(text, values)
             .then(([res]) => {
                 console.log(`Affected rows: ${res.affectedRows}\n`);
-                return res.affectedRows;
+                return;
             })
             .catch(err => {
                 console.error('Error updating tasks\n', err);
@@ -90,7 +90,7 @@ class MySql {
         return this._connection.query(text, values)
             .then(([res]) => {
                 console.log(`Affected rows: ${res.affectedRows}\n`);
-                return res.affectedRows;
+                return;
             })
             .catch(err => {
                 console.error('Error removing tasks\n', err);
