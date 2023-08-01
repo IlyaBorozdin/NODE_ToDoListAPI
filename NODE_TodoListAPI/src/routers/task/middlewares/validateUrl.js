@@ -26,11 +26,11 @@ const validateUrlHandler = (req, res, next) => {
 
     if (errors.length > 0) {
         const message = errors.join('. ');
-        console.log(`Parameters validation failed: ${message}\n`);
+        console.log(`Parameters validation in /task failed: ${message}\n`);
         return res.status(400).json({ error: message });
     }
 
-    console.log('Parameters validation passed\n');
+    console.log('Parameters validation in /task passed\n');
     next();
 };
 

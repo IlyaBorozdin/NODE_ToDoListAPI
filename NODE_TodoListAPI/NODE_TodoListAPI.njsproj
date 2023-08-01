@@ -70,6 +70,24 @@
     <Content Include="src\logic\task\taskId.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\routers\task\id\middlewares\validate.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\id\requests\delete.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\id\requests\get.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\id\requests\post.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\id\requests\put.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\id\idRouter.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\routers\task\middlewares\error.js">
       <SubType>Code</SubType>
     </Content>
@@ -80,6 +98,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\middlewares\validation\validation.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\requests\delete.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\requests\get.js">
@@ -116,6 +137,8 @@
     <Folder Include="src\routers\localhost\" />
     <Folder Include="src\routers\task\" />
     <Folder Include="src\routers\task\id\" />
+    <Folder Include="src\routers\task\id\middlewares\" />
+    <Folder Include="src\routers\task\id\requests\" />
     <Folder Include="src\routers\task\middlewares\" />
     <Folder Include="src\routers\task\middlewares\validation\" />
     <Folder Include="src\routers\task\requests\" />

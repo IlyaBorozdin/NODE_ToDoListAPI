@@ -47,9 +47,9 @@ class MySql {
             });
     }
 
-    read(selector, conditions) {
+    read(conditions) {
         const { text, values } = SelectorToSqlQuery.concat(
-            SelectorToSqlQuery.select(selector),
+            SelectorToSqlQuery.select(),
             SelectorToSqlQuery.where(conditions)
         );
 

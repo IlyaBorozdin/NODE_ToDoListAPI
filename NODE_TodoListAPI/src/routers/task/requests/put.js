@@ -16,11 +16,11 @@ const putHandler = (req, res) => {
             return storage.update(task.objProps, conditions.objProps);
         })
         .then(affectedRows => {
-            console.log('UPDATE request: OK\n');
+            console.log('PUT request: OK\n');
             return res.status(200).json({ affectedRows: affectedRows });
         })
         .catch(err => {
-            console.error('Error while processing UDPATE request:\n', err);
+            console.error('Error while processing PUT request:\n', err);
             throw err;
         });
 };

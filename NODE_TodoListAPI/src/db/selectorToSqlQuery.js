@@ -1,21 +1,8 @@
 const DBError = require('../logic/serverError/DBError');
 class SelectorToSqlQuery {
 
-    static select(selector) {
-        const columns = [];
-
-        if (Object.keys(selector).length === 0) {
-            columns.push('*');
-        } else {
-            Object.keys(selector).forEach(column => {
-                if (selector[column]) {
-                    columns.push(column);
-                }
-            });
-        }
-
-        const query = `SELECT ${columns.join(', ')}\nFROM todo_list;`;
-        return { text: query, values: [] };
+    static select() {
+        return { text: 'SELECT * FROM todo_list;', values: [] };
     }
 
     static insert(selector) {
