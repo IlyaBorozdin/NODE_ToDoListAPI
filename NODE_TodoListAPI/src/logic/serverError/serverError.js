@@ -13,7 +13,7 @@ class ServerError extends Error {
             currentPrototype = Object.getPrototypeOf(currentPrototype);
         }
 
-        errorObj.name = this.name;
+        delete errorObj.name;
 
         return errorObj;
     }

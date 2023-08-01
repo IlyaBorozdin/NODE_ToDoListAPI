@@ -1,24 +1,18 @@
 const storage = require('../../../db/usedStorage');
+const Selector = require('../../../logic/task/selector');
 
 const getHandler = (req, res) => {
-    console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
+    const conditions = new Selector(req.query);
 
-    const conditions = {
-        title: req.query.title,
-        titleReg: req.query.titleReg,
-        since: req.query.since,
-        until: req.query.until,
-        deadline: req.query.deadline,
-        completed: req.query.completed
-    };
+    console.log(`Request parametrs: ${JSON.stringify(conditions.objProps, null, 2)}\n`);
 
     storage.connect()
         .then(() => {
-            return storage.read({}, conditions);
+            return storage.read({}, conditions.objProps);
         })
         .then(tasks => {
             console.log('GET request: OK\n');
-            return res.status(200).json(tasks.map(task => task.objectProperties));
+            return res.status(200).json(tasks.map(task => task.objProps));
         })
         .catch(err => {
             console.error('Error while processing GET request:\n', err);

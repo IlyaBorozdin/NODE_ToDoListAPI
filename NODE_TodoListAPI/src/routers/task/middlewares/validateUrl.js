@@ -1,26 +1,26 @@
-const { isValidBoolean, isValidNumber, isValidDate } = require('./validateFunc');
+const UrlValidation = require('./validation/urlValidation');
 
 const validateUrlHandler = (req, res, next) => {
     const { id, since, until, deadline, completed } = req.query;
     const errors = [];
 
-    if (id !== undefined && !isValidNumber(id)) {
+    if (!UrlValidation.isNum(id)) {
         errors.push('ID must be a valid integer');
     }
 
-    if (since !== undefined && !isValidDate(since)) {
+    if (!UrlValidation.isDate(since)) {
         errors.push('Since must be a valid date');
     }
 
-    if (until !== undefined && !isValidDate(until)) {
+    if (!UrlValidation.isDate(until)) {
         errors.push('Until must be a valid date');
     }
 
-    if (deadline !== undefined && !isValidDate(deadline)) {
+    if (!UrlValidation.isDate(deadline)) {
         errors.push('Deadline must be a valid date');
     }
 
-    if (completed !== undefined && !isValidBoolean(completed)) {
+    if (!UrlValidation.isBool(completed)) {
         errors.push('Completed must be a valid boolean');
     }
 

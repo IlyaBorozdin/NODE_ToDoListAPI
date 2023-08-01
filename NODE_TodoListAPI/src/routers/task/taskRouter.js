@@ -10,9 +10,11 @@ const errorHandler = require('./middlewares/error');
 
 taskRouter.use(validateUrlHandler);
 taskRouter.use(validateBodyHandler);
+
 taskRouter.get('/', getHandler);
 taskRouter.post('/', postHandler);
 taskRouter.put('/', putHandler);
+
 taskRouter.use(errorHandler);
 
 module.exports = taskRouter;

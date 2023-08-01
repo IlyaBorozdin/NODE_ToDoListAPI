@@ -19,7 +19,7 @@ class SelectorToSqlQuery {
     }
 
     static insert(selector) {
-        if (selector.title.length > 255) {
+        if (selector.title && selector.title.length > 255) {
             throw new DBError('Title length must not exceed 255 characters', 'CREATE', 400);
         }
 
@@ -100,9 +100,6 @@ class SelectorToSqlQuery {
             let condition = '';
 
             switch (field) {
-                case 'id':
-                    condition = 'id = ?';
-                    break;
                 case 'title':
                     condition = 'title = ?';
                     break;

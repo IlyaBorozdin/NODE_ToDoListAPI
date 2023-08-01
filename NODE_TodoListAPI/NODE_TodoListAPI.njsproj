@@ -61,6 +61,9 @@
     <Content Include="src\logic\serverError\serverError.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\logic\task\selector.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\logic\task\task.js">
       <SubType>Code</SubType>
     </Content>
@@ -70,10 +73,16 @@
     <Content Include="src\routers\task\middlewares\error.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\requests\get.js">
+    <Content Include="src\routers\task\middlewares\validation\bodyValidation.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validateFunc.js">
+    <Content Include="src\routers\task\middlewares\validation\urlValidation.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\middlewares\validation\validation.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\requests\get.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\requests\post.js">
@@ -108,6 +117,7 @@
     <Folder Include="src\routers\task\" />
     <Folder Include="src\routers\task\id\" />
     <Folder Include="src\routers\task\middlewares\" />
+    <Folder Include="src\routers\task\middlewares\validation\" />
     <Folder Include="src\routers\task\requests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

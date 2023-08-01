@@ -56,11 +56,7 @@ class MySql {
         return this._connection.query(text, values)
             .then(([tasks]) => {
                 console.log(`Selected tasks: ${JSON.stringify(tasks, null, 2)}\n`);
-
-                return tasks.map(taskData => {
-                    const { id, title, deadline, completed } = taskData;
-                    return new TaskId(id, title, deadline, completed);
-                });
+                return tasks.map(body => new TaskId(body));
             })
             .catch(err => {
                 console.error('Error searching tasks\n', err);

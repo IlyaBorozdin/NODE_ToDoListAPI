@@ -2,10 +2,9 @@ const storage = require('../../../db/usedStorage');
 const Task = require('../../../logic/task/task');
 
 const postHandler = (req, res) => {
-    const { title, deadline, completed } = req.body;
-    const task = new Task(title, new Date(deadline), completed);
+    const task = new Task(req.body);
 
-    console.log(`Request body: ${JSON.stringify(task.objectProperties, null, 2)}\n`);
+    console.log(`Request body: ${JSON.stringify(task.objProps, null, 2)}\n`);
 
     storage.connect()
         .then(() => {

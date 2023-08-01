@@ -1,4 +1,4 @@
-const { isValidBoolean, isValidDate } = require('./validateFunc');
+const BodyValidation = require('./validation/bodyValidation');
 
 const validateBodyHandler = (req, res, next) => {
     if (!Object.keys(req.body).length) {
@@ -8,11 +8,11 @@ const validateBodyHandler = (req, res, next) => {
     const { deadline, completed } = req.body;
     const errors = [];
 
-    if (deadline !== undefined && !isValidDate(deadline)) {
+    if (!BodyValidation.isDate(deadline)) {
         errors.push('Deadline must be a valid date');
     }
 
-    if (completed !== undefined && !isValidBoolean(completed)) {
+    if (!BodyValidation.isBool(completed)) {
         errors.push('Completed must be a valid boolean');
     }
 
