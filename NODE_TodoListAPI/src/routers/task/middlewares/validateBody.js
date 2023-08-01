@@ -1,7 +1,7 @@
 const BodyValidation = require('./validation/bodyValidation');
+const ValidationError = require('../../../logic/serverError/validationError');
 
 const validateBodyHandler = (req, res, next) => {
-    const remarks = req.validationError;
 
     if (Object.keys(req.body).length === 0) {
         if (remarks.length > 0) {
@@ -14,6 +14,8 @@ const validateBodyHandler = (req, res, next) => {
 
     const { deadline, completed } = req.body;
 
+    const remarks = [];
+
     if (!BodyValidation.isDate(deadline)) {
         remarks.push('Body: Deadline must be a valid date');
     }
@@ -24,7 +26,7 @@ const validateBodyHandler = (req, res, next) => {
 
     if (remarks.length > 0) {
         console.log('Body validation in /task failed\n');
-        throw remarks;
+        return next(new ValidationError(remarks));
     }
 
     console.log('Body validation in /task passed\n');

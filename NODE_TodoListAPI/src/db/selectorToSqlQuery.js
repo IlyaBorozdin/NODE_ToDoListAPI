@@ -89,30 +89,21 @@ class SelectorToSqlQuery {
             switch (field) {
                 case 'title':
                     condition = 'title = ?';
-                    queryParams.push(paramValue);
                     break;
                 case 'titleReg':
                     condition = 'LOWER(title) LIKE LOWER(?)';
-                    queryParams.push(paramValue);
                     break;
                 case 'since':
                     condition = 'deadline >= ?';
-                    queryParams.push(paramValue);
                     break;
                 case 'until':
                     condition = 'deadline <= ?';
-                    queryParams.push(paramValue);
                     break;
                 case 'deadline':
-                    if (paramValue !== 'null') {
-                        condition = 'deadline = ?';
-                        queryParams.push(paramValue);
-                    } else {
-                        condition = 'deadline IS NULL';
-                    }
+                    condition = 'deadline = ?';
+                    break;
                 case 'completed':
                     condition = 'completed = ?';
-                    queryParams.push(paramValue);
                     break;
                 default:
                     break;

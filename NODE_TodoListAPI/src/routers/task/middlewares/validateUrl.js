@@ -6,8 +6,7 @@ const validateUrlHandler = (req, res, next) => {
 
     console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
 
-    const remarks = new ValidationError();
-    req.validationError = remarks;
+    const remarks = [];
 
     if (!UrlValidation.isNum(id)) {
         remarks.push('Query: Id must be a valid integer');
@@ -31,10 +30,10 @@ const validateUrlHandler = (req, res, next) => {
 
     if (remarks.length > 0) {
         console.log('Parameters validation in /task failed\n');
-    } else {
-        console.log('Parameters validation in /task passed\n');
+        return next(new ValidationError(remarks));
     }
 
+    console.log('Parameters validation in /task passed\n');
     return next();
 };
 

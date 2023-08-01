@@ -43,12 +43,6 @@
     <Content Include="cli\main.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="cli_test\api.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="cli_test\interface.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -135,7 +129,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="cli_test\" />
     <Folder Include="cli\" />
     <Folder Include="src\" />
     <Folder Include="src\logic\" />
