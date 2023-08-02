@@ -76,6 +76,9 @@
     <Content Include="src\logic\task\taskId.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\middlewares\headers.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\middlewares\logger\logErr.js">
       <SubType>Code</SubType>
     </Content>
@@ -86,6 +89,12 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\middlewares\logger\logRes.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\localhost\get.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\localhost\localhostRouter.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\id\middlewares\validate.js">
@@ -103,7 +112,7 @@
     <Content Include="src\routers\task\id\idRouter.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\error.js">
+    <Content Include="src\middlewares\error.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\middlewares\validate\logic\bodyValidation.js">
@@ -154,7 +163,6 @@
     <Folder Include="src\middlewares\logger\" />
     <Folder Include="src\routers\" />
     <Folder Include="src\routers\localhost\" />
-    <Folder Include="src\routers\localhost\middlewares\" />
     <Folder Include="src\routers\task\" />
     <Folder Include="src\routers\task\id\" />
     <Folder Include="src\routers\task\id\middlewares\" />

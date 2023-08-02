@@ -1,5 +1,4 @@
 const gracefulShutdown = require('graceful-shutdown-express');
-
 const server = require('../server');
 const storage = require('./db/usedStorage');
 

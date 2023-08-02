@@ -5,7 +5,6 @@ class UrlValidation extends Validation {
         if (value === undefined) {
             return true;
         }
-
         return value === 'true' || value === 'false';
     }
 

@@ -6,10 +6,7 @@ const bodyHandler = (req, res, next) => {
         return next();
     }
 
-    //console.log(`Request parametrs: ${JSON.stringify(req.body, null, 2)}\n`);
-
     const { deadline, completed } = req.body;
-
     const remarks = req.remarks;
 
     if (!BodyValidation.isDate(deadline)) {
@@ -18,12 +15,6 @@ const bodyHandler = (req, res, next) => {
 
     if (!BodyValidation.isBool(completed)) {
         remarks.push('Invalid "completed" value in request body. Use "true" or "false".');
-    }
-
-    if (remarks.length > 0) {
-        //console.log('Body validation in /task failed\n');
-    } else {
-        //console.log('Body validation in /task passed\n');
     }
 
     return next();

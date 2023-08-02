@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-
 const TaskId = require('../logic/task/taskId');
 const SelectorToSqlQuery = require('./selectorToSqlQuery');
 const DBError = require('../logic/serverError/dbError');
@@ -19,6 +18,7 @@ connection.connect()
         console.error('Database is disconnected\n', err);
         throw new DBError('CONNECT', 503);
     });
+
 class MySql {
     constructor(connection) {
         this._connection = connection;
@@ -38,11 +38,9 @@ class MySql {
         return this._connection.query(text, values)
             .then(([res]) => {
                 let id = res.insertId;
-                //console.log(`Inserted task: id = ${id}\n`);
                 return id;
             })
             .catch(err => {
-                //console.error('Error inserting new task\n', err);
                 throw new DBError('CREATE');
             });
     }
@@ -55,11 +53,9 @@ class MySql {
 
         return this._connection.query(text, values)
             .then(([tasks]) => {
-                //console.log(`Selected tasks: ${JSON.stringify(tasks, null, 2)}\n`);
                 return tasks.map(body => new TaskId(body));
             })
             .catch(err => {
-                //console.error('Error searching tasks\n', err);
                 throw new DBError('READ');
             });
     }
@@ -72,11 +68,9 @@ class MySql {
 
         return this._connection.query(text, values)
             .then(([res]) => {
-                //console.log(`Affected rows: ${res.affectedRows}\n`);
                 return;
             })
             .catch(err => {
-                //console.error('Error updating tasks\n', err);
                 throw new DBError('UPDATE');
             });
     }
@@ -89,11 +83,9 @@ class MySql {
 
         return this._connection.query(text, values)
             .then(([res]) => {
-                //console.log(`Affected rows: ${res.affectedRows}\n`);
                 return;
             })
             .catch(err => {
-                //console.error('Error removing tasks\n', err);
                 throw new DBError('DELETE');
             });
     }

@@ -4,17 +4,15 @@ class Log {
 
         console.log(`status:\t\t\t${res.status}`);
         console.log(`status text:\t\t${res.statusText}`);
-        console.log(`headers:\t\t${JSON.stringify(res.headers, null, 4) }`);
         console.log(`url:\t\t\t${res.url}`);
         console.log(`type:\t\t\t${res.type}`);
-        console.log(`body:\t\t\t${JSON.stringify(res.body, null, 4) }`);
 
         if (res.status !== 204) {
             try {
                 const responseJson = await res.json();
 
                 console.log('\nResponse JSON:');
-                if (res.ok) {
+                if (res.ok && res.url !== 'http://localhost:1337/') {
                     console.table(responseJson);
                 } else {
                     console.log(JSON.stringify(responseJson, null, 4));
