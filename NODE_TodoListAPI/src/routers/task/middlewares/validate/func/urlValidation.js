@@ -1,5 +1,4 @@
 const Validation = require("./validation");
-
 class UrlValidation extends Validation {
 
     static isBool(value) {

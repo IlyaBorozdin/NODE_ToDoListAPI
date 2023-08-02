@@ -1,4 +1,5 @@
-const DBError = require('../logic/serverError/DBError');
+const DBError = require('../logic/serverError/dbError');
+const ClientError = require('../logic/serverError/clientError');
 class SelectorToSqlQuery {
 
     static select() {
@@ -7,7 +8,7 @@ class SelectorToSqlQuery {
 
     static insert(selector) {
         if (selector.title && selector.title.length > 255) {
-            throw new DBError('Title length must not exceed 255 characters', 'CREATE', 400);
+            throw new ClientError(['the title should not exceed 255 characters in length']);
         }
 
         const queryParams = [];
@@ -25,7 +26,7 @@ class SelectorToSqlQuery {
         });
 
         if (columns.length === 0) {
-            throw new DBError('No valid fields provided for query', 'CREATE', 400);
+            throw new ClientError(['no valid fields provided for query']);
         }
 
         const query = `INSERT INTO todo_list (${columns.join(', ')})\nVALUES (${Array(columns.length).fill('?').join(', ') });`;
@@ -35,7 +36,7 @@ class SelectorToSqlQuery {
 
     static update(selector) {
         if (selector.title && selector.title.length > 255) {
-            throw new DBError('Title length must not exceed 255 characters', 'UPDATE', 400);
+            throw new ClientError(['the title should not exceed 255 characters in length']);
         }
 
         const fields = Object.keys(selector);
@@ -56,7 +57,7 @@ class SelectorToSqlQuery {
         });
 
         if (updateFields.length === 0) {
-            throw new DBError('No valid fields provided for query', 'UPDATE', 400);
+            throw new ClientError(['no valid fields provided for query']);
         }
 
         const query = `UPDATE todo_list\nSET ${updateFields.join(', ')};`;

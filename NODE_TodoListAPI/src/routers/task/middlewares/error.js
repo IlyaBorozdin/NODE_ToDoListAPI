@@ -1,13 +1,10 @@
 const ServerError = require('../../../logic/serverError/serverError');
 
-const errorHandler = (err, req, res) => {
-    if (err instanceof ServerError) {
-        console.log(`Server error: ${JSON.stringify(err.errorResponse, null, 2)}\n`);
-        return res.status(err.statusCode).json(err.errorResponse);
-    }
+const errorHandler = (err, req, res, next) => {
+    const resError = err instanceof ServerError ? err.objError : (new ServerError()).objError;
 
-    console.log('Server Internal Error\n', err);
-    return res.status(500).json({ error: 'Server Internal Error' });
+    console.log(`Server error: ${JSON.stringify(resError, null, 2)}\n`);
+    return res.status(resError.statusCode).json(resError);
 };
 
 module.exports = errorHandler;

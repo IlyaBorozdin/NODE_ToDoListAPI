@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 const TaskId = require('../logic/task/taskId');
 const SelectorToSqlQuery = require('./selectorToSqlQuery');
-const DBError = require('../logic/serverError/DBError');
+const DBError = require('../logic/serverError/dbError');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -17,7 +17,7 @@ connection.connect()
     })
     .catch(err => {
         console.error('Database is disconnected\n', err);
-        throw new DBError('Database is disconnected', 'CONNECT', 500);
+        throw new DBError('CONNECT', 503);
     });
 class MySql {
     constructor(connection) {
@@ -43,7 +43,7 @@ class MySql {
             })
             .catch(err => {
                 console.error('Error inserting new task\n', err);
-                throw new DBError('Error inserting new task', 'CREATE', 500);
+                throw new DBError('CREATE');
             });
     }
 
@@ -60,7 +60,7 @@ class MySql {
             })
             .catch(err => {
                 console.error('Error searching tasks\n', err);
-                throw new DBError('Error searching task', 'READ', 500);
+                throw new DBError('READ');
             });
     }
 
@@ -77,7 +77,7 @@ class MySql {
             })
             .catch(err => {
                 console.error('Error updating tasks\n', err);
-                throw new DBError('Error updating tasks', 'UPDATE', 500);
+                throw new DBError('UPDATE');
             });
     }
 
@@ -94,7 +94,7 @@ class MySql {
             })
             .catch(err => {
                 console.error('Error removing tasks\n', err);
-                throw new DBError('Error removing tasks', 'DELETE', 500);
+                throw new DBError('DELETE');
             });
     }
 }

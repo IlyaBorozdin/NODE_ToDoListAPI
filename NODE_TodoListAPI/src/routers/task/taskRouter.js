@@ -8,14 +8,11 @@ const postHandler = require('./requests/post');
 const putHandler = require('./requests/put');
 const deleteHandler = require('./requests/delete');
 
-const validateUrlHandler = require('./middlewares/validateUrl');
-const validateBodyHandler = require('./middlewares/validateBody');
+const valisateRouter = require('./middlewares/validate/validate');
 const errorHandler = require('./middlewares/error');
 
-taskRouter.use(validateUrlHandler);
-taskRouter.use(validateBodyHandler);
-
-taskRouter.use('/:id', idRouter);
+taskRouter.use(valisateRouter);
+taskRouter.use('/:id([1-9][0-9]*)', idRouter);
 
 taskRouter.get('/', getHandler);
 taskRouter.post('/', postHandler);

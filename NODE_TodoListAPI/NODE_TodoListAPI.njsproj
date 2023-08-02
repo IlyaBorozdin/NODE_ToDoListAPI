@@ -58,13 +58,13 @@
     <Content Include="src\db\usedStorage.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\logic\serverError\DBError.js">
+    <Content Include="src\logic\serverError\clientError.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\logic\serverError\dbError.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\logic\serverError\serverError.js">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="src\logic\serverError\validationError.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\logic\task\selector.js">
@@ -94,13 +94,16 @@
     <Content Include="src\routers\task\middlewares\error.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validation\bodyValidation.js">
+    <Content Include="src\routers\task\middlewares\validate\func\bodyValidation.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validation\urlValidation.js">
+    <Content Include="src\routers\task\middlewares\validate\func\urlValidation.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validation\validation.js">
+    <Content Include="src\routers\task\middlewares\validate\func\validation.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\routers\task\middlewares\validate\validate.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\routers\task\requests\delete.js">
@@ -118,10 +121,10 @@
     <Content Include="src\routers\task\taskRouter.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validateBody.js">
+    <Content Include="src\routers\task\middlewares\validate\body.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="src\routers\task\middlewares\validateUrl.js">
+    <Content Include="src\routers\task\middlewares\validate\url.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\shutdown.js">
@@ -144,7 +147,8 @@
     <Folder Include="src\routers\task\id\middlewares\" />
     <Folder Include="src\routers\task\id\requests\" />
     <Folder Include="src\routers\task\middlewares\" />
-    <Folder Include="src\routers\task\middlewares\validation\" />
+    <Folder Include="src\routers\task\middlewares\validate\" />
+    <Folder Include="src\routers\task\middlewares\validate\func\" />
     <Folder Include="src\routers\task\requests\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
