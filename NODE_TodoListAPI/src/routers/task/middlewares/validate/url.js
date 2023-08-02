@@ -1,9 +1,9 @@
-const UrlValidation = require('./func/urlValidation');
+const UrlValidation = require('./logic/urlValidation');
 
 const urlHandler = (req, res, next) => {
     const { id, since, until, deadline, completed } = req.query;
 
-    console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
+    //console.log(`Request parametrs: ${JSON.stringify(req.query, null, 2)}\n`);
 
     const remarks = req.remarks;
 
@@ -28,9 +28,9 @@ const urlHandler = (req, res, next) => {
     }
 
     if (remarks.length > 0) {
-        console.log('Parameters validation in /task failed\n');
+        //console.log('Parameters validation in /task failed\n');
     } else {
-        console.log('Parameters validation in /task passed\n');
+        //console.log('Parameters validation in /task passed\n');
     }
 
     return next();

@@ -4,6 +4,7 @@ class ServerError extends Error {
         this._statusCode = statusCode || 500;
         this._userMessage = userMessage || 'We\'re sorry, but something went wrong while processing your request.Our technical team has been notified and is working to resolve the issue.Please try again later.';
         this._developerMessage = developerMessage || 'An unexpected internal server error occurred. The issue has been logged for investigation. This error is not related to a specific database operation.';
+        Error.captureStackTrace(this, this.constructor);
     }
     get userMessage() {
         return this._userMessage;

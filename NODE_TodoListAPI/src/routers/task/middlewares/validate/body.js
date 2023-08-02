@@ -1,4 +1,4 @@
-const BodyValidation = require('./func/bodyValidation');
+const BodyValidation = require('./logic/bodyValidation');
 
 const bodyHandler = (req, res, next) => {
 
@@ -6,7 +6,7 @@ const bodyHandler = (req, res, next) => {
         return next();
     }
 
-    console.log(`Request parametrs: ${JSON.stringify(req.body, null, 2)}\n`);
+    //console.log(`Request parametrs: ${JSON.stringify(req.body, null, 2)}\n`);
 
     const { deadline, completed } = req.body;
 
@@ -21,9 +21,9 @@ const bodyHandler = (req, res, next) => {
     }
 
     if (remarks.length > 0) {
-        console.log('Body validation in /task failed\n');
+        //console.log('Body validation in /task failed\n');
     } else {
-        console.log('Body validation in /task passed\n');
+        //console.log('Body validation in /task passed\n');
     }
 
     return next();

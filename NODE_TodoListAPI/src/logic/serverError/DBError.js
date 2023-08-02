@@ -6,6 +6,7 @@ class DBError extends ServerError {
             `An internal server error occurred during a database operation. The error happened while executing a ${operation} query. The issue has been logged for investigation.`,
             statusCode
         );
+        Error.captureStackTrace(this, this.constructor);
     }
 }
 

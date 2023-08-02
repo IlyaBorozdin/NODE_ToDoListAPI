@@ -18,7 +18,6 @@ validateRouter.use((req, res, next) => {
     if (req.remarks.length > 0) {
         throw new ClientError(req.remarks);
     }
-
     return next();
 });
 

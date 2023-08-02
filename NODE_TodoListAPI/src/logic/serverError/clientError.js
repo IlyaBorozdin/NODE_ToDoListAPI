@@ -7,6 +7,7 @@ class ClientError extends ServerError {
             `Client validation error: Your request contained validation errors. Please review the following suggestions and guide the user to correct their input. ${suggestions.join(' ')}`,
             statusCode || 400
         );
+        Error.captureStackTrace(this, this.constructor);
     }
 }
 
