@@ -1,5 +1,4 @@
 const ServerError = require("./serverError")
-
 class ClientError extends ServerError {
     constructor(suggestions, statusCode) {
         super('Client Error',

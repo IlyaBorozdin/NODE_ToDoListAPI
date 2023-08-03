@@ -64,6 +64,9 @@
     <Content Include="src\logic\serverError\dbError.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\logic\serverError\notFoundError.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\logic\serverError\serverError.js">
       <SubType>Code</SubType>
     </Content>

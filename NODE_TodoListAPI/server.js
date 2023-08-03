@@ -7,6 +7,7 @@ const headersHandler = require('./src/middlewares/headers');
 const logger = require('./src/middlewares/logger/logger');
 const localhostRouter = require('./src/routers/localhost/localhostRouter');
 const taskRouter = require('./src/routers/task/taskRouter');
+const NotFoundError = require('./src/logic/serverError/notFoundError');
 
 const port = process.env.PORT || 1337;
 const app = express();
@@ -18,9 +19,12 @@ app.use((req, res, next) => {
     logger.req(req);
     return next();
 });
-app.use(localhostRouter);
+app.use('/', localhostRouter);
 app.use('/task', taskRouter);
-app.use('/', errorHandler);
+app.use(() => {
+    throw new NotFoundError();
+});
+app.use(errorHandler);
 
 const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
